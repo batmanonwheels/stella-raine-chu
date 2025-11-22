@@ -1,0 +1,39 @@
+.masthead {
+	width: 100%;
+	flex-direction: column;
+	padding: 0 3%;
+}
+
+.masthead h1 {
+	font-size: 96px;
+	font-weight: 300;
+	text-align: center;
+	color: var(--text-primary);
+	font-family: var(--font-engravers-old-english);
+}
+
+.masthead hr {
+	border: 0;
+	color: var(--rule-primary);
+	margin: auto;
+}
+
+.masthead hr {
+	border-top: 1px solid var(--rule-primary);
+	height: 1px;
+}
+
+.masthead div + hr {
+	border-bottom: 2px solid var(--rule-primary);
+	height: 2px;
+}
+
+.subheader {
+	display: flex;
+	font-size: 1.1em;
+	align-items: center;
+	justify-content: center;
+	height: 1.75rem;
+	width: 100%;
+	color: var(--text-primary);
+}
