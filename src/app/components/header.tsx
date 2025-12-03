@@ -1,16 +1,12 @@
+'use client';
+
 import styles from './modules/header.module.css';
+import { useState, useEffect } from 'react';
+
+export const revalidate = 60;
 
 export default function Header() {
-	const parseDate = (): string => {
-		const currentDate = new Date();
-		const day = currentDate.getDay();
-		const month = currentDate.getMonth();
-		const date = currentDate.getDate();
-		const year = currentDate.getFullYear();
-
-		return `${days[day]}, ${months[month]} ${date}, ${year}`;
-	};
-
+	const now = new Date();
 	const days: string[] = [
 		'SUNDAY',
 		'MONDAY',
@@ -20,7 +16,6 @@ export default function Header() {
 		'FRIDAY',
 		'SATURDAY',
 	];
-
 	const months: string[] = [
 		'JANUARY',
 		'FEBRUARY',
@@ -36,18 +31,42 @@ export default function Header() {
 		'DECEMBER',
 	];
 
-	let date = parseDate();
+	const parseDate = (now: Date): string => {
+		const day = now.getDay();
+		const month = now.getMonth();
+		const date = now.getDate();
+		const year = now.getFullYear();
+
+		return `NEW YORK, ${days[day]}, ${months[month]} ${date}, ${year}`;
+	};
+	const parseTime = (now: Date): string => {
+		const hours = now.getHours();
+		const minutes = now.getMinutes();
+
+		return `${hours > 12 ? hours - 12 : hours}:${
+			minutes < 10 ? '0' + minutes : minutes
+		}${hours > 12 ? 'PM' : 'AM'}`;
+	};
+
+	const [currentTime, setCurrentTime] = useState<string>(parseTime(now));
+	const [currentDate, setCurrentDate] = useState<string>(parseDate(now));
+
+	useEffect(() => {
+		let delay = 60000 - now.getMilliseconds() * 100;
+
+		setInterval(() => {
+			setCurrentTime(parseTime(new Date()));
+		}, delay);
+	}, []);
 
 	return (
 		<header className={styles.masthead}>
 			<h1>Stella Raine Chu</h1>
-			<hr />
 			<div className={styles.subheader}>
-				{/* <p>VOL. CLXII .. No. 56,163</p> */}
-				<h4 id='date'>{`NEW YORK, ${date}`}</h4>
-				{/* <p>$2.50</p> */}
+				<h4>{currentTime}</h4>
+				<h4 id='date'>{currentDate}</h4>
+				<h4>$2.50</h4>
 			</div>
-			<hr />
 		</header>
 	);
 }
