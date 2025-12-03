@@ -56,6 +56,7 @@ export default function Header() {
 
 		setInterval(() => {
 			setCurrentTime(parseTime(new Date()));
+			setCurrentDate(parseDate(new Date()));
 		}, delay);
 	}, []);
 
