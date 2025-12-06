@@ -38,14 +38,15 @@
 		display: flex;
 		font-size: 0.7em;
 		align-items: center;
-		justify-content: center;
+		flex-direction: row-reverse;
+		justify-content: space-between;
 		height: 1.75rem;
 		width: 100%;
 		color: var(--text-primary);
 		border-bottom: none;
 	}
 
-	.subheader > :not(:nth-child(2)) {
+	.subheader > :last-child {
 		display: none;
 	}
 }

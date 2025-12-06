@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 export const revalidate = 60;
 
-export default function Header() {
+const Header = () => {
 	const now = new Date();
 	const days: string[] = [
 		'SUNDAY',
@@ -70,4 +70,6 @@ export default function Header() {
 			</div>
 		</header>
 	);
-}
+};
+
+export default Header;
