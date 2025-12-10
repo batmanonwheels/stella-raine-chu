@@ -1,5 +1,6 @@
 import styles from './modules/articles.module.css';
 import HorizontalRule from './horizontal-rule';
+import React from 'react';
 
 interface Article {
 	title: string;
@@ -8,14 +9,24 @@ interface Article {
 	date: string;
 	origin: string;
 	link: string;
+	image?: string;
+	objectFitPosition?: string;
 }
 
-type ArticlesProps = {
-	type: 'articles' | 'contributions';
-};
-
-const Articles = ({ type }: ArticlesProps) => {
+const Articles = () => {
 	const articles: Article[] = [
+		{
+			title:
+				'Hundreds Rally for Boy, 6, Who Was Separated From His Father by ICE',
+			subtitle:
+				'When she studied acting in London in the 1950s, she was told she was unlikely to find work. She ended up starting one of the country’s foremost Black theaters.',
+			author: 'Stella Raine Chu',
+			date: 'Dec. 7, 2025',
+			origin: 'The New York Times',
+			link: 'https://www.nytimes.com/2025/12/07/nyregion/queens-migrant-boy-detained-rally.html',
+			image:
+				'https://static01.nyt.com/images/2025/12/07/multimedia/07met-child-rally-gkbp/07met-child-rally-gkbp-superJumbo.jpg?quality=75&auto=webp',
+		},
 		{
 			title: 'Yvonne Brewster, Godmother of Black British Theater, Dies at 87',
 			subtitle:
@@ -24,6 +35,9 @@ const Articles = ({ type }: ArticlesProps) => {
 			date: 'Nov. 14, 2025',
 			origin: 'The New York Times',
 			link: 'https://www.nytimes.com/2025/11/14/theater/yvonne-brewster-dead.html',
+			image:
+				'https://static01.nyt.com/images/2025/11/17/multimedia/13brewster-fkmp/13brewster-fkmp-superJumbo.jpg?quality=75&auto=webp',
+			objectFitPosition: 'top',
 		},
 		{
 			title:
@@ -32,6 +46,8 @@ const Articles = ({ type }: ArticlesProps) => {
 			date: 'Jun. 20, 2025',
 			origin: 'Queens Ledger',
 			link: 'https://queensledger.com/2025/06/20/no-beard-or-flannel-required-how-the-astoria-woodworkers-collective-builds-community-through-craft/',
+			image:
+				'https://queensledger.com/wp-content/uploads/2025/06/Craft-1--2048x1365.jpg',
 		},
 		{
 			title: 'Can Students Go Without Their Smartphones? New York Thinks So.',
@@ -39,6 +55,8 @@ const Articles = ({ type }: ArticlesProps) => {
 			date: 'Sep. 4, 2025',
 			origin: 'Queens Ledger',
 			link: 'https://queensledger.com/2025/09/04/can-students-go-without-their-smartphones-new-york-thinks-so/',
+			image:
+				'https://queensledger.com/wp-content/uploads/2025/09/unnamed-3.jpg',
 		},
 		{
 			title: 'How a Community Garden in Woodside Keeps the Neighborhood Alive',
@@ -46,6 +64,7 @@ const Articles = ({ type }: ArticlesProps) => {
 			date: 'Feb. 14, 2024',
 			origin: 'Queens Ledger',
 			link: 'https://queensledger.com/2024/02/14/how-a-community-garden-in-woodside-keeps-the-neighborhood-alive/',
+			image: 'https://queensledger.com/wp-content/uploads/2024/02/image2.png',
 		},
 		{
 			title: 'New York City Has a Bathroom Problem',
@@ -53,72 +72,43 @@ const Articles = ({ type }: ArticlesProps) => {
 			date: 'May. 29, 2024',
 			origin: 'The Arrow',
 			link: 'https://www.thearrowmagazine.com/post/new-york-city-has-a-bathroom-problem',
-		},
-	];
-
-	const bylines: Article[] = [
-		{
-			title:
-				'Marthe Gautier, 96, Dies; Had Key Role in Down Syndrome Breakthrough',
-			subtitle:
-				'She had to fight for recognition after a male colleague took credit for her work in identifying an extra chromosome as the cause of that genetic condition.',
-			author: 'Denise Grady',
-			date: 'Oct. 30, 2025',
-			origin: 'The New York Times',
-			link: 'https://www.nytimes.com/2025/10/30/health/marthe-gautier-dead.html',
-		},
-		{
-			title:
-				'Steve Cropper, Guitarist, Songwriter and Shaper of Memphis Soul Music, Dies at 84',
-			subtitle:
-				'As a member of Booker T. & the MG’s and as a producer, he played a pivotal role in the rise of Stax Records, a storied force in R&B in the 1960s and ’70s.',
-			author: 'Bill Friskics-Warren',
-			date: 'Dec. 3, 2025',
-			origin: 'The New York Times',
-			link: 'https://www.nytimes.com/2025/12/03/arts/music/steve-cropper-dead.html',
+			image:
+				'https://static.wixstatic.com/media/7d07ff_13978f9a90744e01a5c363c9ac5f42c2~mv2.png/v1/fill/w_1456,h_970,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/7d07ff_13978f9a90744e01a5c363c9ac5f42c2~mv2.png',
 		},
 	];
 
 	return (
 		<section id={styles.articles}>
-			<h4>{type === 'articles' ? 'ARTICLES' : 'CONTRIBUTIONS'}</h4>
+			<h4>{'ARTICLES'}</h4>
 			<HorizontalRule width='30%' />
-
-			{type === 'articles' ? (
-				<ul>
-					{articles.map(({ title, author, date, origin, link }) => {
+			<ul>
+				{articles.map(
+					({ title, date, origin, link, image, objectFitPosition }, i) => {
 						return (
-							<li className={styles.article} key={title}>
-								<a href={link}>
-									<h5>
-										{title} - <span>{origin}</span>
-									</h5>
-								</a>
-								<p>{date}</p>
-							</li>
+							<React.Fragment key={title}>
+								<li className={styles.article}>
+									<a href={link}>
+										<img
+											src={image}
+											alt={title + ' via ' + origin}
+											style={{ objectPosition: objectFitPosition }}
+										/>
+										<HorizontalRule width='100%' />
+										<h5>{title}</h5>
+										<p>{origin}</p>
+									</a>
+									<p>{date}</p>
+								</li>
+								{i < articles.length - 1 ? (
+									<HorizontalRule width='15%' />
+								) : (
+									<></>
+								)}
+							</React.Fragment>
 						);
-					})}
-				</ul>
-			) : (
-				<ul>
-					{bylines.map(({ title, author, date, origin, link }) => {
-						return (
-							<li className={styles.article} key={title}>
-								<a href={link}>
-									<h5>
-										{title} -{' '}
-										<span>
-											{origin} - ({author})
-										</span>
-									</h5>
-								</a>
-								{/* <p>by {author}</p> */}
-								<p>{date}</p>
-							</li>
-						);
-					})}
-				</ul>
-			)}
+					}
+				)}
+			</ul>
 		</section>
 	);
 };

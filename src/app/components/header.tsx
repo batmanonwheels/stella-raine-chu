@@ -37,15 +37,16 @@ const Header = () => {
 		const date = now.getDate();
 		const year = now.getFullYear();
 
-		return `NEW YORK, ${days[day]}, ${months[month]} ${date}, ${year}`;
+		return `${days[day]}, ${months[month]} ${date}, ${year}`;
 	};
+
 	const parseTime = (now: Date): string => {
 		const hours = now.getHours();
 		const minutes = now.getMinutes();
 
-		return `${hours > 12 ? hours - 12 : hours}:${
+		return `${hours > 12 ? hours - 12 : hours === 0 ? 12 : hours}:${
 			minutes < 10 ? '0' + minutes : minutes
-		}${hours > 12 ? 'PM' : 'AM'}`;
+		}${hours >= 12 ? 'PM' : 'AM'}`;
 	};
 
 	const [currentTime, setCurrentTime] = useState<string>(parseTime(now));
@@ -66,7 +67,7 @@ const Header = () => {
 			<div className={styles.subheader}>
 				<h4>{currentTime}</h4>
 				<h4 id='date'>{currentDate}</h4>
-				<h4>$2.50</h4>
+				<h4>$4.00</h4>
 			</div>
 		</header>
 	);
