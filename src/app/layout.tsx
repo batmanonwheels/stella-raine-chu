@@ -7,9 +7,19 @@ const engraversBt = localFont({
 	variable: '--font-engravers-old-english',
 });
 
+const dmSerif = localFont({
+	src: './fonts/DMSerifText-Regular.ttf',
+	variable: '--font-dm-serif-text',
+});
+
+const dmSerifItalic = localFont({
+	src: './fonts/DMSerifText-Italic.ttf',
+	variable: '--font-dm-serif-text-italic',
+});
+
 export const metadata: Metadata = {
 	title: 'Stella Raine Chu',
-	description: 'journalist',
+	description: 'Multimedia Journalist',
 };
 
 export default function RootLayout({
@@ -19,7 +29,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={`${engraversBt.variable}`}>{children}</body>
+			<body
+				className={`${engraversBt.variable} ${dmSerif.variable} ${dmSerifItalic.variable}`}
+			>
+				{children}
+			</body>
 		</html>
 	);
 }
