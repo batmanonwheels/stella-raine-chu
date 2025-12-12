@@ -5,6 +5,7 @@ import HorizontalRule from './components/horizontal-rule';
 import Articles from './components/articles';
 import Contributions from './components/contributions';
 import About from './components/about';
+import Image from 'next/image';
 
 export default function Home() {
 	const photos: string[] = [
@@ -21,7 +22,13 @@ export default function Home() {
 			<Header />
 			<main className={styles.main}>
 				<div className={styles.cover}>
-					<img src={photos[randPhotoIndex]} alt='Photo of Stella Raine Chu' />
+					<Image
+						src={photos[randPhotoIndex]}
+						alt='Photo of Stella Raine Chu'
+						width={200}
+						height={200}
+						unoptimized
+					/>
 					<HorizontalRule width='100%' />
 					<About />
 				</div>

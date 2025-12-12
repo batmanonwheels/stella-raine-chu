@@ -53,12 +53,13 @@ const Header = () => {
 	const [currentDate, setCurrentDate] = useState<string>(parseDate(now));
 
 	useEffect(() => {
-		let delay = 60000 - now.getMilliseconds() * 100;
+		let delay = (60 - now.getSeconds()) * 100;
 
-		setInterval(() => {
+		let interval = setInterval(() => {
 			setCurrentTime(parseTime(new Date()));
 			setCurrentDate(parseDate(new Date()));
 		}, delay);
+		return () => clearInterval(interval);
 	}, []);
 
 	return (

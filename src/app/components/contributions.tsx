@@ -1,6 +1,7 @@
 import styles from './modules/articles.module.css';
 import HorizontalRule from './horizontal-rule';
-import React from 'react';
+import { Fragment } from 'react';
+import Link from 'next/link';
 
 interface Article {
 	title: string;
@@ -53,19 +54,23 @@ const Contributions = () => {
 						i
 					) => {
 						return (
-							<React.Fragment key={title}>
+							<Fragment key={title}>
 								<li className={styles.article}>
-									<a href={link}>
-										<img
-											src={image}
-											alt={title + ' via ' + origin}
-											style={{ objectPosition: objectFitPosition }}
-										/>
+									<Link href={link} target='_blank'>
+										{image ? (
+											<img
+												src={image}
+												alt={title + ' via ' + origin}
+												style={{ objectPosition: objectFitPosition }}
+											/>
+										) : (
+											<></>
+										)}
 										<HorizontalRule width='100%' />
 										<h5>{title}</h5>
 										<p>by {author}</p>
 										<p>{origin}</p>
-									</a>
+									</Link>
 									<p>{date}</p>
 								</li>
 								{i < contributions.length - 1 ? (
@@ -73,7 +78,7 @@ const Contributions = () => {
 								) : (
 									<></>
 								)}
-							</React.Fragment>
+							</Fragment>
 						);
 					}
 				)}
