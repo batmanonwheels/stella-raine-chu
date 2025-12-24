@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 
@@ -20,6 +20,10 @@ const dmSerifItalic = localFont({
 export const metadata: Metadata = {
 	title: 'Stella Raine Chu',
 	description: 'Multimedia Journalist',
+};
+
+export const viewport: Viewport = {
+	themeColor: 'black',
 };
 
 export default function RootLayout({
