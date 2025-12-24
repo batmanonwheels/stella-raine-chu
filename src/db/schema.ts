@@ -13,22 +13,3 @@ export const articlesTable = pgTable('articles', {
 	displayDate: text().notNull(),
 	isContribution: boolean(),
 });
-
-/*
-model Article {
-  id                Int      @id @default(autoincrement())
-  title             String
-  author            String
-  date              DateTime
-  origin            String
-  link              String
-  image             String
-  objectFitPosition String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  isVisible         Boolean  @default(true)
-  displayDate       String
-  isContribution    Boolean
-}
-
-*/
