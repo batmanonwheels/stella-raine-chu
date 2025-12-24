@@ -3,7 +3,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
 	width: 100%;
 	padding: 0.25rem 0;
 }
@@ -46,6 +45,7 @@
 .socials a {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	padding: 0.5rem;
 }
 
@@ -65,7 +65,7 @@
 
 	.about p {
 		padding: 1rem 0;
-		text-align: left;
+		/* text-align: left; */
 		font-size: 14px;
 	}
 
@@ -87,7 +87,6 @@
 	.socials a {
 		display: flex;
 		justify-content: space-evenly;
-		align-items: center;
 		width: 25%;
 		gap: 0.5rem;
 		height: 4rem;
