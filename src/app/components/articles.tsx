@@ -38,7 +38,7 @@ const Articles = () => {
 			link: 'https://www.nytimes.com/2025/11/14/theater/yvonne-brewster-dead.html',
 			image:
 				'https://static01.nyt.com/images/2025/11/17/multimedia/13brewster-fkmp/13brewster-fkmp-superJumbo.jpg?quality=75&auto=webp',
-			objectFitPosition: 'top',
+			objectFitPosition: '30% 30%',
 		},
 		{
 			title:
