@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/next';
 
 const engraversBt = localFont({
 	src: './fonts/engravers-old-english-bt.ttf',
@@ -37,6 +38,7 @@ export default function RootLayout({
 				className={`${engraversBt.variable} ${dmSerif.variable} ${dmSerifItalic.variable}`}
 			>
 				{children}
+				<Analytics />
 			</body>
 		</html>
 	);
