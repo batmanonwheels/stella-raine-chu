@@ -2,18 +2,22 @@ import styles from './modules/articles.module.css';
 import HorizontalRule from './horizontal-rule';
 import { Fragment } from 'react';
 import Link from 'next/link';
-import { articlesTable } from '@/db/schema';
-import { drizzle } from 'drizzle-orm/vercel-postgres';
-import { eq, desc } from 'drizzle-orm';
+
+import { type SanityDocument } from 'next-sanity';
+import { client } from '../../sanity/lib/client';
+import { Article } from '../../../sanity.types';
+
+const ARTICLES_QUERY = `*[
+  _type == "article" && isContribution
+]|order(date desc)`;
+const options = { next: { revalidate: 30 } };
 
 const Contributions = async () => {
-	const db = drizzle();
-
-	const contributions = await db
-		.select()
-		.from(articlesTable)
-		.where(eq(articlesTable.isContribution, true))
-		.orderBy(desc(articlesTable.date));
+	const contributions = await client.fetch<SanityDocument<Article>[]>(
+		ARTICLES_QUERY,
+		{},
+		options
+	);
 
 	return (
 		<section id={styles.articles}>
@@ -22,21 +26,19 @@ const Contributions = async () => {
 			<ul>
 				{contributions.map(
 					(
-						{
-							title,
-							author,
-							displayDate,
-							origin,
-							link,
-							image,
-							objectFitPosition,
-						},
+						{ title, author, date, origin, link, image, objectFitPosition },
 						i
 					) => {
+						let newDate = new Date(date!);
+						const formattedDate = `${new Intl.DateTimeFormat('en-US', {
+							month: 'short',
+						}).format(
+							newDate
+						)}. ${newDate.getDate()}, ${newDate.getFullYear()}`;
 						return (
 							<Fragment key={title}>
 								<li className={styles.article}>
-									<Link href={link} target='_blank'>
+									<Link href={link!} target='_blank'>
 										{image ? (
 											<img
 												src={image}
@@ -51,7 +53,7 @@ const Contributions = async () => {
 										<p>by {author}</p>
 										<p>{origin}</p>
 									</Link>
-									<p>{displayDate}</p>
+									<p>{formattedDate}</p>
 								</li>
 								{i < contributions.length - 1 ? (
 									<HorizontalRule width='15%' />
