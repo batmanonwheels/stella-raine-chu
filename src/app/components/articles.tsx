@@ -2,29 +2,34 @@ import styles from './modules/articles.module.css';
 import HorizontalRule from './horizontal-rule';
 import { Fragment } from 'react';
 import Link from 'next/link';
-import { articlesTable } from '@/db/schema';
-import { drizzle } from 'drizzle-orm/vercel-postgres';
-import { eq, desc } from 'drizzle-orm';
+
+import { type SanityDocument } from 'next-sanity';
+import { client } from '../../sanity/lib/client';
+
+const ARTICLES_QUERY = `*[
+  _type == "article" && !isContribution
+] | order(date desc)`;
+const options = { next: { revalidate: 30 } };
 
 const Articles = async () => {
-	const db = drizzle();
-
-	const articles = await db
-		.select()
-		.from(articlesTable)
-		.where(eq(articlesTable.isContribution, false))
-		.orderBy(desc(articlesTable.date));
-
+	const articles = await client.fetch<SanityDocument[]>(
+		ARTICLES_QUERY,
+		{},
+		options
+	);
 	return (
 		<section id={styles.articles}>
 			<h4>{'ARTICLES'}</h4>
 			<HorizontalRule width='30%' />
 			<ul>
 				{articles.map(
-					(
-						{ title, displayDate, origin, link, image, objectFitPosition },
-						i
-					) => {
+					({ title, date, origin, link, image, objectFitPosition }, i) => {
+						let newDate = new Date(date!);
+						const formattedDate = `${new Intl.DateTimeFormat('en-US', {
+							month: 'short',
+						}).format(
+							newDate
+						)}. ${newDate.getDate()}, ${newDate.getFullYear()}`;
 						return (
 							<Fragment key={title}>
 								<li className={styles.article}>
@@ -42,7 +47,7 @@ const Articles = async () => {
 										<h5>{title}</h5>
 										<p>{origin}</p>
 									</Link>
-									<p>{displayDate}</p>
+									<p>{formattedDate}</p>
 								</li>
 								{i < articles.length - 1 ? (
 									<HorizontalRule width='15%' />
