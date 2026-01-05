@@ -68,7 +68,7 @@ const Header = () => {
 			<div className={styles.subheader}>
 				<h4>{currentTime}</h4>
 				<h4 id='date'>{currentDate}</h4>
-				<h4>$4.00</h4>
+				<h4>$3.00</h4>
 			</div>
 		</header>
 	);
