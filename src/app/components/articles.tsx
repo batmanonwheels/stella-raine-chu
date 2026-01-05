@@ -7,7 +7,7 @@ import { type SanityDocument } from 'next-sanity';
 import { client } from '../../sanity/lib/client';
 
 const ARTICLES_QUERY = `*[
-  _type == "article" && !isContribution
+  _type == "article" && !isContribution && isVisible
 ] | order(date desc)`;
 const options = { next: { revalidate: 30 } };
 
@@ -19,7 +19,7 @@ const Articles = async () => {
 	);
 	return (
 		<section id={styles.articles}>
-			<h4>{'ARTICLES'}</h4>
+			<h4>{'BYLINES'}</h4>
 			<HorizontalRule width='30%' />
 			<ul>
 				{articles.map(
