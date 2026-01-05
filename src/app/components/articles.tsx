@@ -7,7 +7,7 @@ import { type SanityDocument } from 'next-sanity';
 import { client } from '../../sanity/lib/client';
 
 const ARTICLES_QUERY = `*[
-  _type == "article" && !isContribution
+  _type == "article" && !isContribution && isVisible
 ] | order(date desc)`;
 const options = { next: { revalidate: 30 } };
 

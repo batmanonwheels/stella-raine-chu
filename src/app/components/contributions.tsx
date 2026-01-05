@@ -8,7 +8,7 @@ import { client } from '../../sanity/lib/client';
 import { Article } from '../../../sanity.types';
 
 const ARTICLES_QUERY = `*[
-  _type == "article" && isContribution
+  _type == "article" && isContribution && isVisible
 ]|order(date desc)`;
 const options = { next: { revalidate: 30 } };
 
