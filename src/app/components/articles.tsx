@@ -3,8 +3,8 @@ import HorizontalRule from './horizontal-rule';
 import { Fragment } from 'react';
 import Link from 'next/link';
 
-import { type SanityDocument } from 'next-sanity';
 import { client } from '../../sanity/lib/client';
+import { Article } from '../../../sanity.types';
 
 const ARTICLES_QUERY = `*[
   _type == "article" && !isContribution && isVisible
@@ -12,11 +12,7 @@ const ARTICLES_QUERY = `*[
 const options = { next: { revalidate: 30 } };
 
 const Articles = async () => {
-	const articles = await client.fetch<SanityDocument[]>(
-		ARTICLES_QUERY,
-		{},
-		options
-	);
+	const articles = await client.fetch<Article[]>(ARTICLES_QUERY, {}, options);
 	return (
 		<section id={styles.articles}>
 			<h4>{'BYLINES'}</h4>
@@ -24,7 +20,7 @@ const Articles = async () => {
 			<ul>
 				{articles.map(
 					({ title, date, origin, link, image, objectFitPosition }, i) => {
-						let newDate = new Date(date!);
+						let newDate = new Date(date);
 						const formattedDate = `${new Intl.DateTimeFormat('en-US', {
 							month: 'short',
 						}).format(

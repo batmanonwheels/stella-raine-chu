@@ -13,21 +13,31 @@
  */
 
 // Source: schema.json
+export type Photo = {
+  _id: string;
+  _type: "photo";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  description: string;
+  link: string;
+};
+
 export type Article = {
   _id: string;
   _type: "article";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  author?: string;
-  origin?: string;
-  date?: string;
-  link?: string;
-  image?: string;
-  objectFitPosition?: string;
-  isContribution?: boolean;
-  isVisible?: boolean;
+  title: string;
+  author: string;
+  origin: string;
+  date: string;
+  link: string;
+  image: string;
+  objectFitPosition: string;
+  isContribution: boolean;
+  isVisible: boolean;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -51,9 +61,9 @@ export type SanityImagePalette = {
 
 export type SanityImageDimensions = {
   _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+  height: number;
+  width: number;
+  aspectRatio: number;
 };
 
 export type SanityImageMetadata = {
@@ -69,18 +79,18 @@ export type SanityImageMetadata = {
 
 export type SanityImageHotspot = {
   _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+  x: number;
+  y: number;
+  height: number;
+  width: number;
 };
 
 export type SanityImageCrop = {
   _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
 };
 
 export type SanityFileAsset = {
@@ -144,9 +154,23 @@ export type Geopoint = {
 
 export type Slug = {
   _type: "slug";
-  current?: string;
+  current: string;
   source?: string;
 };
 
-export type AllSanitySchemaTypes = Article | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint | Slug;
+export type AllSanitySchemaTypes =
+  | Photo
+  | Article
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint
+  | Slug;
+
 export declare const internalGroqTypeReferenceTo: unique symbol;

@@ -13,7 +13,7 @@ const ARTICLES_QUERY = `*[
 const options = { next: { revalidate: 30 } };
 
 const Contributions = async () => {
-	const contributions = await client.fetch<SanityDocument<Article>[]>(
+	const contributions = await client.fetch<Article[]>(
 		ARTICLES_QUERY,
 		{},
 		options
@@ -29,7 +29,7 @@ const Contributions = async () => {
 						{ title, author, date, origin, link, image, objectFitPosition },
 						i
 					) => {
-						let newDate = new Date(date!);
+						let newDate = new Date(date);
 						const formattedDate = `${new Intl.DateTimeFormat('en-US', {
 							month: 'short',
 						}).format(
