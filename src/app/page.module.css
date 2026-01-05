@@ -73,6 +73,7 @@
 	.cover {
 		width: 100%;
 		position: unset;
+		padding: 0;
 	}
 
 	.cover > img {
