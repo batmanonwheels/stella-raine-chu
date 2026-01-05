@@ -3,7 +3,6 @@ import HorizontalRule from './horizontal-rule';
 import { Fragment } from 'react';
 import Link from 'next/link';
 
-import { type SanityDocument } from 'next-sanity';
 import { client } from '../../sanity/lib/client';
 import { Article } from '../../../sanity.types';
 
