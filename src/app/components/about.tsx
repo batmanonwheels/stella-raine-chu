@@ -50,7 +50,7 @@ const About = () => {
 					</svg>
 				</a>
 
-				<a href='mailto:mail@stellarainechu.com'>
+				<a href='mailto:stellachu03@gmail.com'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='16'
