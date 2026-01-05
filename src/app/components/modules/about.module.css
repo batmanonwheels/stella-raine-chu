@@ -55,11 +55,6 @@
 	height: 1.5rem;
 	width: auto;
 }
-@media (max-width: 834px) {
-	.socials {
-		/* margin-bottom: 5rem; */
-	}
-}
 
 @media (max-width: 600px) {
 	.about {
