@@ -17,7 +17,7 @@
 	width: 40%;
 	position: sticky;
 	align-self: flex-start;
-	top: 5rem;
+	top: 4rem;
 }
 
 .cover > img {
@@ -32,6 +32,29 @@
 	border-left: 1px solid var(--rule-primary);
 	padding: 0 1%;
 	top: 1rem;
+}
+
+@media (max-width: 834px) {
+	.main {
+		flex-wrap: wrap;
+	}
+
+	.cover {
+		width: 100%;
+		position: relative;
+		padding: 2rem;
+		padding-top: 0;
+		top: 1rem;
+	}
+
+	.main > section {
+		width: calc(50% - 1rem);
+		top: 0;
+	}
+
+	.main > section:nth-child(2) {
+		border-left: none;
+	}
 }
 
 @media (max-width: 600px) {

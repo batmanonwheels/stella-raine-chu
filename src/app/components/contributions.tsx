@@ -3,7 +3,6 @@ import HorizontalRule from './horizontal-rule';
 import { Fragment } from 'react';
 import Link from 'next/link';
 
-import { type SanityDocument } from 'next-sanity';
 import { client } from '../../sanity/lib/client';
 import { Article } from '../../../sanity.types';
 
@@ -13,7 +12,7 @@ const ARTICLES_QUERY = `*[
 const options = { next: { revalidate: 30 } };
 
 const Contributions = async () => {
-	const contributions = await client.fetch<SanityDocument<Article>[]>(
+	const contributions = await client.fetch<Article[]>(
 		ARTICLES_QUERY,
 		{},
 		options
@@ -29,7 +28,7 @@ const Contributions = async () => {
 						{ title, author, date, origin, link, image, objectFitPosition },
 						i
 					) => {
-						let newDate = new Date(date!);
+						let newDate = new Date(date);
 						const formattedDate = `${new Intl.DateTimeFormat('en-US', {
 							month: 'short',
 						}).format(

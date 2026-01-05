@@ -10,6 +10,7 @@
 		"format": "biome format --write"
 	},
 	"dependencies": {
+		"@sanity/cli": "^5.1.0",
 		"@sanity/image-url": "1",
 		"@sanity/vision": "4",
 		"@vercel/analytics": "^1.6.1",
