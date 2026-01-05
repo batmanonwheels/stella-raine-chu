@@ -19,7 +19,7 @@ const Articles = async () => {
 	);
 	return (
 		<section id={styles.articles}>
-			<h4>{'ARTICLES'}</h4>
+			<h4>{'BYLINES'}</h4>
 			<HorizontalRule width='30%' />
 			<ul>
 				{articles.map(
